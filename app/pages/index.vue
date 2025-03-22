@@ -1,6 +1,6 @@
 <template>
   <UContainer class="py-12">
-    <div class="mb-12 flex items-center gap-4 justify-between">
+    <div class="mb-12 flex items-start md:items-center gap-4 justify-between">
       <div>
         <h1 class="text-2xl font-bold">Animated Lucide Vue Icons</h1>
         <p class="text-sm text-gray-500 mt-4">
@@ -18,12 +18,21 @@
             >dmytro</a
           >
         </p>
+        <p class="text-sm text-gray-500 mt-4">
+          Made by
+          <a
+            href="https://x.com/fayazara"
+            class="text-primary-500 hover:underline"
+            >Fayaz</a
+          >. Work in progress, feel free to contribute on GitHub.
+        </p>
       </div>
-      <div>
+      <div class="flex items-center gap-2">
+        <ThemePicker v-model="primaryColor" />
         <UButton
-          icon="i-mdi-github"
-          color="neutral"
+          icon="i-lucide-github"
           variant="ghost"
+          target="_blank"
           to="https://github.com/fayazara/animated-lucide-vue"
         />
       </div>
@@ -34,7 +43,7 @@
           <LucideAArrowDown
             :ref="ref"
             :controlled="controlled"
-            class="text-primary-500"
+            :class="primaryColor"
           />
         </template>
       </AnimatedIconButton>
@@ -43,7 +52,7 @@
           <LucideEarth
             :ref="ref"
             :controlled="controlled"
-            class="text-primary-500"
+            :class="primaryColor"
           />
         </template>
       </AnimatedIconButton>
@@ -52,7 +61,7 @@
           <LucideAudioLines
             :ref="ref"
             :controlled="controlled"
-            class="text-primary-500"
+            :class="primaryColor"
           />
         </template>
       </AnimatedIconButton>
@@ -61,7 +70,7 @@
           <LucideSquareStack
             :ref="ref"
             :controlled="controlled"
-            class="text-primary-500"
+            :class="primaryColor"
           />
         </template>
       </AnimatedIconButton>
@@ -70,10 +79,104 @@
           <LucideSlidersHorizontal
             :ref="ref"
             :controlled="controlled"
-            class="text-primary-500"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideSquareActivity
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideUserRound
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideHome
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideFileStack
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideAlarmClock
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideSettings
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideMenu
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideDelete
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideClock
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideCalendarDays
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
           />
         </template>
       </AnimatedIconButton>
     </div>
   </UContainer>
 </template>
+
+<script setup lang="ts">
+const primaryColor = ref('text-neutral-700');
+</script>
