@@ -2,7 +2,7 @@
   <UContainer class="py-12">
     <div class="mb-12 flex items-center gap-4 justify-between">
       <div>
-        <h1 class="text-2xl font-bold">Lucide Vue Motion Animated Icons</h1>
+        <h1 class="text-2xl font-bold">Animated Lucide Vue Icons</h1>
         <p class="text-sm text-gray-500 mt-4">
           A collection of animated icons using Lucide and Vue Motion. Ported
           from the awesome lib
@@ -20,7 +20,12 @@
         </p>
       </div>
       <div>
-        <UButton icon="i-mdi-github" color="neutral" variant="ghost" />
+        <UButton
+          icon="i-mdi-github"
+          color="neutral"
+          variant="ghost"
+          to="https://github.com/fayazara/animated-lucide-vue"
+        />
       </div>
     </div>
     <div class="grid grid-cols-12 gap-4">
