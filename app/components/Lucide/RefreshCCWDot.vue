@@ -16,28 +16,10 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-  },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-  },
-};
-
-const pathVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-    pathOffset: 0,
-  },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-    pathOffset: [1, 0],
-  },
+const groupVariants = {
+  normal: { rotate: '0deg' },
+  animate: { rotate: '-50deg' },
+  transition: { type: 'spring', stiffness: 250, damping: 25 }
 };
 
 const isControlled = ref(false);
@@ -93,32 +75,16 @@ defineExpose({
       stroke-linecap="round"
       stroke-linejoin="round"
     >
-      <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
+      <motion.g
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
-      />
+        :variants="groupVariants"
+      >
+        <path d="M3 2v6h6" />
+        <path d="M21 12A9 9 0 0 0 6 5.3L3 8" />
+        <path d="M21 22v-6h-6" />
+        <path d="M3 12a9 9 0 0 0 15 6.7l3-2.7" />
+      </motion.g>
+      <circle cx="12" cy="12" r="1" />
     </svg>
   </div>
-</template>
+</template> 

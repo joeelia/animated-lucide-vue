@@ -16,28 +16,27 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-  },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-  },
-};
-
-const pathVariants = {
-  normal: {
+const windVariants = {
+  normal: (custom: unknown) => ({
     pathLength: 1,
     opacity: 1,
     pathOffset: 0,
-  },
-  animate: {
+    transition: {
+      duration: 0.3,
+      ease: 'easeInOut',
+      delay: custom as number,
+    },
+  }),
+  animate: (custom: unknown) => ({
     pathLength: [0, 1],
     opacity: [0, 1],
     pathOffset: [1, 0],
-  },
+    transition: {
+      duration: 0.5,
+      ease: 'easeInOut',
+      delay: custom as number,
+    },
+  }),
 };
 
 const isControlled = ref(false);
@@ -93,32 +92,20 @@ defineExpose({
       stroke-linecap="round"
       stroke-linejoin="round"
     >
+      <path d="M6 12H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+      <path d="M6 8h12" />
       <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
+        d="M18.3 17.7a2.5 2.5 0 0 1-3.16 3.83 2.53 2.53 0 0 1-1.14-2V12"
+        :variants="windVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :custom="0"
       />
       <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
+        d="M6.6 15.6A2 2 0 1 0 10 17v-5"
+        :variants="windVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
+        :custom="0.2"
       />
     </svg>
   </div>
-</template>
+</template> 

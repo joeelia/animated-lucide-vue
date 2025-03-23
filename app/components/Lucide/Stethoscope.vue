@@ -16,27 +16,31 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-  },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-  },
+const DURATION = 0.25;
+
+const calculateDelay = (i: unknown) => {
+  return Number(i) === 0 ? 0.1 : Number(i) * DURATION + 0.1;
 };
 
 const pathVariants = {
   normal: {
     pathLength: 1,
-    opacity: 1,
     pathOffset: 0,
+    opacity: 1,
+    transition: { delay: 0 },
   },
+  animate: {
+    pathOffset: [1, 0],
+    pathLength: [0, 1],
+    opacity: [0, 1],
+  },
+};
+
+const circleVariants = {
+  normal: { pathLength: 1, opacity: 1, transition: { delay: 0 } },
   animate: {
     pathLength: [0, 1],
     opacity: [0, 1],
-    pathOffset: [1, 0],
   },
 };
 
@@ -94,31 +98,57 @@ defineExpose({
       stroke-linejoin="round"
     >
       <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
+        d="M11 2v2"
         :variants="pathVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :transition="{
+          duration: DURATION,
+          delay: calculateDelay(2),
+          opacity: { delay: calculateDelay(2) },
+        }"
       />
       <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
+        d="M5 2v2"
         :variants="pathVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :transition="{
+          duration: DURATION,
+          delay: calculateDelay(2),
+          opacity: { delay: calculateDelay(2) },
+        }"
       />
       <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
+        d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"
         :variants="pathVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :transition="{
+          duration: DURATION,
+          delay: calculateDelay(2),
+          opacity: { delay: calculateDelay(2) },
+        }"
+      />
+      <motion.path
+        d="M8 15a6 6 0 0 0 12 0v-3"
+        :variants="pathVariants"
+        :animate="currentState"
+        :transition="{
+          duration: DURATION,
+          delay: calculateDelay(1),
+          opacity: { delay: calculateDelay(1) },
+        }"
       />
       <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
+        cx="20"
+        cy="10"
+        r="2"
         :variants="circleVariants"
         :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
+        :transition="{
+          duration: DURATION,
+          delay: calculateDelay(0),
+          opacity: { delay: calculateDelay(0) },
+        }"
       />
     </svg>
   </div>
-</template>
+</template> 

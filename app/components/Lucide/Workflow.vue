@@ -16,28 +16,20 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
+const variants = {
   normal: {
     pathLength: 1,
     opacity: 1,
   },
-  animate: {
+  animate: (custom: unknown) => ({
     pathLength: [0, 1],
     opacity: [0, 1],
-  },
-};
-
-const pathVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-    pathOffset: 0,
-  },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-    pathOffset: [1, 0],
-  },
+    transition: {
+      duration: 0.3,
+      opacity: { delay: 0.15 },
+      delay: Number(custom) * 0.1,
+    },
+  }),
 };
 
 const isControlled = ref(false);
@@ -93,32 +85,32 @@ defineExpose({
       stroke-linecap="round"
       stroke-linejoin="round"
     >
-      <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
+      <motion.rect
+        width="8"
+        height="8"
+        x="3"
+        y="3"
+        rx="2"
+        :variants="variants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :custom="0"
       />
       <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
+        d="M7 11v4a2 2 0 0 0 2 2h4"
+        :variants="variants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :custom="3"
       />
-      <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
+      <motion.rect
+        width="8"
+        height="8"
+        x="13"
+        y="13"
+        rx="2"
+        :variants="variants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
+        :custom="0"
       />
     </svg>
   </div>
-</template>
+</template> 

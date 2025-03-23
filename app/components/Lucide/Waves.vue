@@ -16,6 +16,14 @@ const emit = defineEmits<{
   stopAnimation: []
 }>()
 
+const pathVariants = {
+  normal: { pathLength: 1 },
+  animate: {
+    pathLength: [0, 1],
+    transition: { duration: 0.4, ease: 'linear' }
+  }
+}
+
 const isControlled = ref(false)
 const currentState = ref('normal')
 
@@ -71,38 +79,17 @@ defineExpose({
     >
       <motion.path
         d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2c2.5 0 2.5-2 5-2c1.3 0 1.9.5 2.5 1"
-        :initial="{ pathLength: 1 }"
-        :variants="{
-          normal: { pathLength: 1 },
-          animate: {
-            pathLength: [0, 1],
-            transition: { duration: 0.4, ease: 'linear' }
-          }
-        }"
+        :variants="pathVariants"
         :animate="currentState"
       />
       <motion.path
         d="M2 12c.6.5 1.2 1 2.5 1c2.5 0 2.5-2 5-2c2.6 0 2.4 2 5 2c2.5 0 2.5-2 5-2c1.3 0 1.9.5 2.5 1"
-        :initial="{ pathLength: 1 }"
-        :variants="{
-          normal: { pathLength: 1 },
-          animate: {
-            pathLength: [0, 1],
-            transition: { duration: 0.4, ease: 'linear' }
-          }
-        }"
+        :variants="pathVariants"
         :animate="currentState"
       />
       <motion.path
         d="M2 18c.6.5 1.2 1 2.5 1c2.5 0 2.5-2 5-2c2.6 0 2.4 2 5 2c2.5 0 2.5-2 5-2c1.3 0 1.9.5 2.5 1"
-        :initial="{ pathLength: 1 }"
-        :variants="{
-          normal: { pathLength: 1 },
-          animate: {
-            pathLength: [0, 1],
-            transition: { duration: 0.4, ease: 'linear' }
-          }
-        }"
+        :variants="pathVariants"
         :animate="currentState"
       />
     </svg>

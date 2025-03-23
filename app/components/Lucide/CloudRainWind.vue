@@ -16,27 +16,25 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-  },
+const windVariants = {
   animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
+    transition: {
+      staggerChildren: 0.2,
+    },
   },
 };
 
-const pathVariants = {
+const windChildVariants = {
   normal: {
-    pathLength: 1,
     opacity: 1,
-    pathOffset: 0,
   },
   animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-    pathOffset: [1, 0],
+    opacity: [1, 0.2, 1],
+    transition: {
+      duration: 1,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
   },
 };
 
@@ -93,32 +91,14 @@ defineExpose({
       stroke-linecap="round"
       stroke-linejoin="round"
     >
-      <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
-      />
+      <!-- Cloud - static -->
+      <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+      <!-- Wind lines - opacity animation -->
+      <motion.g :variants="windVariants" :animate="currentState">
+        <motion.path :variants="windChildVariants" d="m9.2 22 3-7" />
+        <motion.path :variants="windChildVariants" d="m9 13-3 7" />
+        <motion.path :variants="windChildVariants" d="m17 13-3 7" />
+      </motion.g>
     </svg>
   </div>
-</template>
+</template> 

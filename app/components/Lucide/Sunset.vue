@@ -16,28 +16,21 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
+const arrowVariants = {
   normal: {
-    pathLength: 1,
-    opacity: 1,
+    y: 0,
   },
   animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
+    y: [0, 1, 0],
   },
 };
 
-const pathVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-    pathOffset: 0,
-  },
-  animate: {
-    pathLength: [0, 1],
+const raysVariants = {
+  normal: { opacity: 1 },
+  animate: (i: unknown) => ({
     opacity: [0, 1],
-    pathOffset: [1, 0],
-  },
+    transition: { delay: Number(i) * 0.1, duration: 0.3 },
+  }),
 };
 
 const isControlled = ref(false);
@@ -71,6 +64,14 @@ defineExpose({
   startAnimation,
   stopAnimation,
 });
+
+const rays = [
+  'm4.93 10.93 1.41 1.41',
+  'M2 18h2',
+  'M20 18h2',
+  'm19.07 10.93-1.41 1.41',
+  'M22 22H2',
+];
 </script>
 
 <template>
@@ -93,32 +94,23 @@ defineExpose({
       stroke-linecap="round"
       stroke-linejoin="round"
     >
+      <motion.g
+        :variants="arrowVariants"
+        :animate="currentState"
+      >
+        <path d="M12 10V2" />
+        <path d="m16 6-4 4-4-4" />
+      </motion.g>
+
       <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
+        v-for="(d, index) in rays"
+        :key="d"
+        :d="d"
+        :variants="raysVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :custom="index + 1"
       />
-      <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
-      />
+      <path d="M16 18a4 4 0 0 0-8 0" />
     </svg>
   </div>
-</template>
+</template> 
