@@ -175,6 +175,24 @@
       </AnimatedIconButton>
       <AnimatedIconButton>
         <template #default="{ ref, controlled }">
+          <LucideBluetoothSearching
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideSmartphoneCharging
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
           <LucideSearch
             :ref="ref"
             :controlled="controlled"
