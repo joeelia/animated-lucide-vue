@@ -191,6 +191,15 @@
           />
         </template>
       </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideSearch
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
     </div>
   </UContainer>
 </template>
