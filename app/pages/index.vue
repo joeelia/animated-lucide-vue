@@ -28,6 +28,7 @@
         </p>
       </div>
       <div class="flex items-center gap-2">
+        <ThemeToggle/>
         <ThemePicker v-model="primaryColor" />
         <UButton
           icon="i-lucide-github"
@@ -37,7 +38,7 @@
         />
       </div>
     </div>
-    <div class="grid grid-cols-12 gap-4">
+    <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4">
       <AnimatedIconButton>
         <template #default="{ ref, controlled }">
           <LucideAArrowDown
@@ -200,10 +201,64 @@
           />
         </template>
       </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideWaves
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideMoon
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideSun
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideCircleCheck
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideUsers
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideBell
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
     </div>
   </UContainer>
 </template>
 
 <script setup lang="ts">
-const primaryColor = ref('text-neutral-700');
+const primaryColor = ref('text-neutral-700 dark:text-neutral-300');
 </script>

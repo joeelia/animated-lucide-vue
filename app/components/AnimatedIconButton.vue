@@ -32,7 +32,7 @@ defineExpose({
 <template>
   <button
     :class="[
-      'h-full w-full aspect-square bg-neutral-50 hover:bg-neutral-100 rounded-xl cursor-pointer',
+      'h-full w-full aspect-square bg-neutral-50 hover:bg-neutral-100 dark:bg-white/10 dark:hover:bg-white/20 rounded-xl cursor-pointer',
       props.class,
     ]"
     @mouseenter="handleButtonEnter"
