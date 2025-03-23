@@ -25,10 +25,6 @@ const pathVariants = {
   },
   animate: {
     scale: [0, 1, 0.8],
-    transition: {
-      duration: 0.6,
-      repeat: Infinity,
-    },
   },
 };
 
@@ -38,9 +34,7 @@ const secondVariants = {
   },
   animate: {
     opacity: [1, 0.8, 1],
-    transition: { 
-      repeat: Infinity 
-    },
+    transition: { repeat: Infinity },
   },
 };
 
@@ -96,7 +90,6 @@ defineExpose({
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      style="overflow: visible"
     >
       <motion.path
         d="m7 7 10 10-5 5V2l5 5L7 17"
