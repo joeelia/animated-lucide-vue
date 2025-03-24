@@ -16,28 +16,27 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
+const cloudVariants = {
   normal: {
-    pathLength: 1,
-    opacity: 1,
+    x: 0,
+    y: 0,
   },
   animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
+    x: [-1, 1, -1, 1, 0],
+    y: [-1, 1, -1, 1, 0],
+    transition: {
+      duration: 1,
+      ease: 'easeInOut',
+    },
   },
 };
 
-const pathVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-    pathOffset: 0,
-  },
-  animate: {
-    pathLength: [0, 1],
+const sunVariants = {
+  normal: { opacity: 1 },
+  animate: (i: unknown) => ({
     opacity: [0, 1],
-    pathOffset: [1, 0],
-  },
+    transition: { delay: Number(i) * 0.1, duration: 0.3 },
+  }),
 };
 
 const isControlled = ref(false);
@@ -71,6 +70,14 @@ defineExpose({
   startAnimation,
   stopAnimation,
 });
+
+const sunRays = [
+  'M12 2v2',
+  'm4.93 4.93 1.41 1.41',
+  'M20 12h2',
+  'm19.07 4.93-1.41 1.41',
+  'M15.947 12.65a4 4 0 0 0-5.925-4.128',
+];
 </script>
 
 <template>
@@ -92,33 +99,22 @@ defineExpose({
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
+      style="overflow: visible"
     >
+      <motion.g
+        :variants="cloudVariants"
+        :animate="currentState"
+      >
+        <path d="M13 22H7a5 5 0 1 1 4.9-6H13a3 3 0 0 1 0 6Z" />
+      </motion.g>
       <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
+        v-for="(d, index) in sunRays"
+        :key="d"
+        :d="d"
+        :variants="sunVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
+        :custom="index + 1"
       />
     </svg>
   </div>
-</template>
+</template> 

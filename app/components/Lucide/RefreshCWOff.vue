@@ -16,28 +16,13 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-  },
+const svgVariants = {
+  normal: { x: 0 },
   animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
+    x: [-3, 3, -3, 3, 0],
+    transition: { duration: 0.4 },
   },
-};
-
-const pathVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-    pathOffset: 0,
-  },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-    pathOffset: [1, 0],
-  },
+  transition: { type: 'spring', stiffness: 500, damping: 20 }
 };
 
 const isControlled = ref(false);
@@ -82,7 +67,7 @@ defineExpose({
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
-    <svg
+    <motion.svg
       xmlns="http://www.w3.org/2000/svg"
       :width="size"
       :height="size"
@@ -92,33 +77,16 @@ defineExpose({
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
+      :animate="currentState"
+      :variants="svgVariants"
     >
-      <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
-      />
-    </svg>
+      <path d="M21 8L18.74 5.74A9.75 9.75 0 0 0 12 3C11 3 10.03 3.16 9.13 3.47" />
+      <path d="M8 16H3v5" />
+      <path d="M3 12C3 9.51 4 7.26 5.64 5.64" />
+      <path d="m3 16 2.26 2.26A9.75 9.75 0 0 0 12 21c2.49 0 4.74-1 6.36-2.64" />
+      <path d="M21 12c0 1-.16 1.97-.47 2.87" />
+      <path d="M21 3v5h-5" />
+      <path d="M22 22 2 2" />
+    </motion.svg>
   </div>
-</template>
+</template> 

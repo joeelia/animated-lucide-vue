@@ -16,28 +16,33 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-  },
+// Custom easing function similar to cubicBezier in Framer Motion
+const customEasing = [0.25, 0.1, 0.25, 1];
+
+const firstPathVariants = {
+  normal: { translateX: 0, translateY: 0, rotate: 0 },
   animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-  },
+    translateX: [0, 2.1, 0],
+    translateY: [0, -1.4, 0],
+    rotate: [0, 12, 0],
+    transition: { duration: 0.6, ease: customEasing }
+  }
 };
 
-const pathVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-    pathOffset: 0,
-  },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-    pathOffset: [1, 0],
-  },
+const secondPathVariants = {
+  normal: { pathLength: 1 },
+  animate: { 
+    pathLength: [1, 0.8, 1],
+    transition: { duration: 0.6, ease: customEasing }
+  }
+};
+
+const circleVariants = {
+  normal: { scale: 1 },
+  animate: { 
+    scale: [1, 1.2, 1],
+    transition: { duration: 0.6, ease: customEasing }
+  }
 };
 
 const isControlled = ref(false);
@@ -94,31 +99,22 @@ defineExpose({
       stroke-linejoin="round"
     >
       <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
+        d="M3 7v6h6"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :variants="firstPathVariants"
       />
       <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
+        d="M21 17a9 9 0 0 0-15-6.7L3 13"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
-      />
-      <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
-        :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :variants="secondPathVariants"
       />
       <motion.circle
         cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
+        cy="17"
+        r="1"
         :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
+        :variants="circleVariants"
       />
     </svg>
   </div>
-</template>
+</template> 

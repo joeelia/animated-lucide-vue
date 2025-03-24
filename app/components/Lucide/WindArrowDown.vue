@@ -16,27 +16,46 @@ const emit = defineEmits<{
   stopAnimation: [];
 }>();
 
-const circleVariants = {
-  normal: {
-    pathLength: 1,
-    opacity: 1,
-  },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-  },
-};
-
-const pathVariants = {
-  normal: {
+const windVariants = {
+  normal: (custom: unknown) => ({
     pathLength: 1,
     opacity: 1,
     pathOffset: 0,
-  },
-  animate: {
+    transition: {
+      duration: 0.3,
+      ease: 'easeInOut',
+      delay: custom as number,
+    },
+  }),
+  animate: (custom: unknown) => ({
     pathLength: [0, 1],
     opacity: [0, 1],
     pathOffset: [1, 0],
+    transition: {
+      duration: 0.5,
+      ease: 'easeInOut',
+      delay: custom as number,
+    },
+  }),
+};
+
+const arrowVariants = {
+  normal: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: 'easeInOut',
+    },
+  },
+  animate: {
+    y: [-10, 0],
+    opacity: [0, 1],
+    transition: {
+      duration: 0.5,
+      ease: 'easeInOut',
+      delay: 0.35,
+    },
   },
 };
 
@@ -93,32 +112,29 @@ defineExpose({
       stroke-linecap="round"
       stroke-linejoin="round"
     >
+      <!-- Wind paths -->
       <motion.path
-        d="M21.54 15H17a2 2 0 0 0-2 2v4.54"
-        :variants="pathVariants"
+        d="M12.8 21.6A2 2 0 1 0 14 18H2"
+        :variants="windVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :custom="0.2"
       />
       <motion.path
-        d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"
-        :variants="pathVariants"
+        d="M17.5 10a2.5 2.5 0 1 1 2 4H2"
+        :variants="windVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
+        :custom="0.4"
       />
       <motion.path
-        d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"
-        :variants="pathVariants"
+        d="M10 2v8"
+        :variants="arrowVariants"
         :animate="currentState"
-        :transition="{ duration: 0.7, delay: 0.5, opacity: { delay: 0.5 } }"
       />
-      <motion.circle
-        cx="12"
-        cy="12"
-        r="10"
-        :variants="circleVariants"
+      <motion.path
+        d="m6 6 4 4 4-4"
+        :variants="arrowVariants"
         :animate="currentState"
-        :transition="{ duration: 0.3, delay: 0.1, opacity: { delay: 0.15 } }"
       />
     </svg>
   </div>
-</template>
+</template> 
