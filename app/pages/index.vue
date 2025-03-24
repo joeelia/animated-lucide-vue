@@ -750,6 +750,133 @@
           />
         </template>
       </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideFlame
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideEyeOff
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideBadgeAlert
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <!-- New message icons -->
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideMessageCircle
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideMessageCircleMore
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideMessageSquare
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideMessageSquareMore
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideMessageCircleDashed
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideMessageSquareDashed
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideClipboardCheck
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideArrowLeft
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideArrowRight
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideExpand
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
+      <AnimatedIconButton>
+        <template #default="{ ref, controlled }">
+          <LucideRoute
+            :ref="ref"
+            :controlled="controlled"
+            :class="primaryColor"
+          />
+        </template>
+      </AnimatedIconButton>
     </div>
   </UContainer>
 </template>
