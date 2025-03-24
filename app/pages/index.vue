@@ -24,6 +24,11 @@
             href="https://x.com/fayazara"
             class="text-primary-500 hover:underline"
             >Fayaz</a
+          >. and
+          <a
+            href="https://x.com/Joe_Elia"
+            class="text-primary-500 hover:underline"
+            >Joe Elia</a
           >. Work in progress, feel free to contribute on GitHub.
         </p>
       </div>
