@@ -16,39 +16,75 @@ const emit = defineEmits<{
   stopAnimation: []
 }>()
 
-const plugVariants = {
-  normal: {
-    x: 0,
-    y: 0
-  },
-  animate: {
-    x: -3,
-    y: 3
-  }
-}
-
-const socketVariants = {
-  normal: {
-    x: 0,
-    y: 0
-  },
-  animate: {
-    x: 3,
-    y: -3
-  }
-}
-
-const pathVariants = {
-  normal: {
-    d: 'M7.5 13.5 l2.5 -2.5'
-  },
-  animate: {
-    d: 'M10.43 10.57 l0.10 -0.10'
-  }
-}
-
 const isControlled = ref(false)
 const currentState = ref('normal')
+
+const faceVariants = {
+  normal: {
+    scale: 1,
+    transition: { duration: 0.2, ease: 'easeOut' }
+  },
+  animate: {
+    scale: 1.05,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut'
+    }
+  }
+}
+
+const mouthVariants = {
+  normal: {
+    scaleX: 1,
+    y: 0,
+    transition: { duration: 0.2, ease: 'easeOut' }
+  },
+  animate: {
+    scaleX: 0.8,
+    y: 1,
+    transition: {
+      duration: 0.3,
+      ease: 'easeOut'
+    }
+  }
+}
+
+const leftEyebrowVariants = {
+  normal: {
+    rotate: 0,
+    y: 0,
+    x: 0,
+    transition: { duration: 0.2, ease: 'easeOut' }
+  },
+  animate: {
+    rotate: 15,
+    y: -1,
+    x: -0.5,
+    transition: {
+      duration: 0.25,
+      ease: 'easeOut'
+    }
+  }
+}
+
+const rightEyebrowVariants = {
+  normal: {
+    rotate: 0,
+    y: 0,
+    x: 0,
+    transition: { duration: 0.2, ease: 'easeOut' }
+  },
+  animate: {
+    rotate: 15,
+    y: -1,
+    x: 0.5,
+    transition: {
+      duration: 0.25,
+      ease: 'easeOut',
+      delay: 0.05
+    }
+  }
+}
 
 const startAnimation = () => {
   currentState.value = 'animate'
@@ -100,58 +136,32 @@ defineExpose({
       stroke-linecap="round"
       stroke-linejoin="round"
     >
-      <motion.path
-        d="M19 5l3 -3"
-        :variants="{
-          normal: {
-            d: 'M19 5l3 -3'
-          },
-          animate: {
-            d: 'M17 7l5 -5'
-          }
-        }"
+      <motion.circle
+        cx="12"
+        cy="12"
+        r="10"
+        :variants="faceVariants"
         :animate="currentState"
-        :transition="{ type: 'spring', stiffness: 500, damping: 30 }"
-      />
-      <motion.path
-        d="m2 22 3-3"
-        :variants="{
-          normal: {
-            d: 'm2 22 3-3'
-          },
-          animate: {
-            d: 'm2 22 6-6'
-          }
-        }"
-        :animate="currentState"
-        :transition="{ type: 'spring', stiffness: 500, damping: 30 }"
-      />
-      <motion.path
-        d="M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z"
-        :variants="socketVariants"
-        :animate="currentState"
-        :transition="{ type: 'spring', stiffness: 500, damping: 30 }"
-      />
-      <motion.path
-        :variants="pathVariants"
-        :custom="{ x: 7.5, y: 13.5 }"
         :initial="'normal'"
-        :animate="currentState"
-        :transition="{ type: 'spring', stiffness: 500, damping: 30 }"
       />
       <motion.path
-        :variants="pathVariants"
-        :custom="{ x: 10.5, y: 16.5 }"
+        d="M8 15h8"
+        :variants="mouthVariants"
+        :animate="currentState"
         :initial="'normal'"
-        :animate="currentState"
-        :transition="{ type: 'spring', stiffness: 500, damping: 30 }"
       />
       <motion.path
-        d="m12 6 6 6 2.3-2.3a2.4 2.4 0 0 0 0-3.4l-2.6-2.6a2.4 2.4 0 0 0-3.4 0Z"
-        :variants="plugVariants"
+        d="M8 9h2"
+        :variants="leftEyebrowVariants"
         :animate="currentState"
-        :transition="{ type: 'spring', stiffness: 500, damping: 30 }"
+        :initial="'normal'"
+      />
+      <motion.path
+        d="M14 9h2"
+        :variants="rightEyebrowVariants"
+        :animate="currentState"
+        :initial="'normal'"
       />
     </svg>
   </div>
-</template>
+</template> 

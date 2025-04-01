@@ -4,7 +4,7 @@
       <div>
         <h1 class="text-2xl font-bold">Animated Lucide Vue Icons</h1>
         <p class="text-sm text-gray-500 mt-4">
-          A collection of animated icons using Lucide and Vue Motion. Ported
+          A collection of {{ totalIcons }} animated icons using Lucide and Vue Motion. Ported
           from the awesome lib
           <a
             href="https://icons.pqoqubbw.dev/"
@@ -43,722 +43,142 @@
         />
       </div>
     </div>
-    <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4">
-      <AnimatedIconButton>
+
+    <div class="mb-8">
+      <input
+        v-model="searchQuery"
+        type="text"
+        :placeholder="`Search ${totalIcons} icons...`"
+        class="w-full px-4 py-2 rounded-lg border dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary-500"
+      />
+      <div v-if="searchQuery" class="mt-2 text-sm text-gray-500">
+        Results: {{ filteredIcons.length }}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4">
+      <div v-for="icon in filteredIcons" :key="icon" class="flex flex-col items-center gap-1">
+        <AnimatedIconButton class="w-14 h-14 bg-gray-100 dark:bg-gray-800 rounded-lg">
         <template #default="{ ref, controlled }">
-          <LucideAArrowDown
+            <component
+              :is="getIconComponent(icon)"
             :ref="ref"
             :controlled="controlled"
             :class="primaryColor"
+              :size="24"
           />
         </template>
       </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSquareArrowDown
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSquareArrowUp
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideHistory
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSquareArrowLeft
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSquareArrowRight
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideEarth
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideAudioLines
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSquareStack
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSlidersHorizontal
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSquareActivity
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideUserRound
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideHome
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideFileStack
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideAlarmClock
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSettings
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideMenu
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideDelete
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideClock
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideCalendarDays
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideBluetoothSearching
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSmartphoneCharging
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSearch
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideWaves
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideMoon
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSun
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideCircleCheck
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideUsers
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideBell
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideKey
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideKeySquare
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideKeyCircle
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideRotateCW
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideRotateCCW
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideRefreshCWOff
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideRefreshCW
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideRefreshCCWDot
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideRedo
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideUndoDot
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideRedoDot
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowBigDown
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowBigLeft
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowBigRight
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowBigUp
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideAArrowUp
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideChartSpline
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowUp
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowDown
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideVibrate
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideWavesLadder
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideWindArrowDown
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideAirVent
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideTornado
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideCloudRain
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideCloudRainWind
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowBigDownDash
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowBigLeftDash
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowBigRightDash
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideArrowBigUpDash
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideMoonAlt
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideFacebook
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideTwitter
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideLinkedin
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideYoutube
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideInstagram
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideTwitch
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideDribbble
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideDiscord
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideCloudSun
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSunset
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSunDim
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSunMedium
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideSunMoon
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideCart
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideStethoscope
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideEarth
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideWorkflow
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideLogout
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
-      <AnimatedIconButton>
-        <template #default="{ ref, controlled }">
-          <LucideCircleHelp
-            :ref="ref"
-            :controlled="controlled"
-            :class="primaryColor"
-          />
-        </template>
-      </AnimatedIconButton>
+        <span class="text-xs text-gray-500 select-text cursor-text text-center w-full truncate">{{ icon }}</span>
+      </div>
     </div>
   </UContainer>
 </template>
 
 <script setup lang="ts">
-const primaryColor = ref('text-neutral-700 dark:text-neutral-300');
+import { ref, computed, defineAsyncComponent } from 'vue'
+
+const primaryColor = ref('text-neutral-700 dark:text-neutral-300')
+const searchQuery = ref('')
+
+const icons: string[] = [
+  'scan-face',
+  'smartphone-charging',
+  'history',
+  'square-activity',
+  'square-arrow-down',
+  'square-arrow-left',
+  'square-arrow-right',
+  'square-arrow-up',
+  'key',
+  'key-square',
+  'key-circle',
+  'rotate-cw',
+  'rotate-ccw',
+  'refresh-cw-off',
+  'refresh-cw',
+  'refresh-ccw-dot',
+  'redo',
+  'undo-dot',
+  'redo-dot',
+  'arrow-big-down',
+  'arrow-big-left',
+  'arrow-big-right',
+  'arrow-big-up',
+  'a-arrow-up',
+  'chart-spline',
+  'arrow-up',
+  'arrow-down',
+  'vibrate',
+  'waves-ladder',
+  'waves',
+  'wind-arrow-down',
+  'air-vent',
+  'tornado',
+  'cloud-rain',
+  'cloud-rain-wind',
+  'arrow-big-down-dash',
+  'arrow-big-left-dash',
+  'arrow-big-right-dash',
+  'arrow-big-up-dash',
+  'moon',
+  'facebook',
+  'twitter',
+  'linkedin',
+  'youtube',
+  'instagram',
+  'twitch',
+  'dribbble',
+  'discord',
+  'search',
+  'cloud-sun',
+  'sunset',
+  'sun-dim',
+  'sun-medium',
+  'sun-moon',
+  'cart',
+  'stethoscope',
+  'circle-check',
+  'earth',
+  'workflow',
+  'logout',
+  'circle-help',
+  'menu',
+  'moon-alt',
+  'settings',
+  'sliders-horizontal',
+  'square-stack',
+  'sun',
+  'user-round',
+  'users',
+  'alarm-clock',
+  'audio-lines',
+  'bell',
+  'bluetooth-searching',
+  'calendar-days',
+  'connect',
+  'delete',
+  'file-stack',
+  'home',
+  'frown',
+  'smile-plus',
+  'smile',
+  'laugh',
+  'annoyed',
+  'meh'
+]
+
+const filteredIcons = computed(() => {
+  if (!searchQuery.value) return icons
+  return icons.filter(icon => 
+    icon.toLowerCase().includes(searchQuery.value.toLowerCase())
+  )
+})
+
+const totalIcons = computed(() => icons.length)
+
+const getIconComponent = computed(() => (icon: string) => {
+  const componentName = icon.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('')
+  return defineAsyncComponent(() => import(`~/components/Lucide/${componentName}.vue`))
+})
 </script>

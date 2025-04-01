@@ -129,19 +129,7 @@ const searchVariants = {
 
 ## 5. Adding to index.vue
 
-After creating a new icon component in `app/components/Lucide/`, add it to `app/pages/index.vue`:
-
-```vue
-<AnimatedIconButton>
-  <template #default="{ ref, controlled }">
-    <LucideYourNewIcon
-      :ref="ref"
-      :controlled="controlled"
-      :class="primaryColor"
-    />
-  </template>
-</AnimatedIconButton>
-```
+After creating a new icon component in `app/components/Lucide/`, add it to `app/pages/index.vue` in the 'icons' array. Make sure to always at it as the last arry index for new items. :
 
 ## Common Gotchas
 
@@ -150,3 +138,4 @@ After creating a new icon component in `app/components/Lucide/`, add it to `app/
 3. Ignore TypeScript errors about `motion-v` - they appear in all components
 4. Keep animations simple - one normal state and one animate state
 5. Don't add unnecessary timers or complex logic - just toggle the state
+6. You do not need to import `import { ref } from 'vue';` within the Lucide components.
